@@ -6,7 +6,7 @@
 (function() {
     // ========== КОНФИГУРАЦИЯ ==========
     // ⚠️ ЗАМЕНИТЕ ЭТОТ URL НА ВАШ URL ИЗ APPS SCRIPT ⚠️
-    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzf_TwsFNCPE1t5lAEGBSGN3yUejaQ5w_obBGjlM46dz4dQr6XFTuWtKkuqnTYcqhRBxQ/exec';
+    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyJAGrSvpJqkGRdWuU1-xfqSeIH0aQqD-KaNPoNy-TNLQ3xq0TD-6csa2QbBBo8kQRTUw/exec';
     
     let isSubmitting = false;
     
@@ -188,7 +188,6 @@
         formBody.append('name', formData.name);
         formBody.append('attendance', formData.attendance);
         formBody.append('guests', formData.guests);
-        if (formData.message) formBody.append('message', formData.message);
         
         const response = await fetch(SCRIPT_URL, {
             method: 'POST',
@@ -210,7 +209,6 @@
         const attendanceRadios = document.querySelectorAll('input[name="attendance"]');
         const guestsInput = document.getElementById('guests');
         const guestButtons = document.querySelectorAll('.guest-btn');
-        const messageInput = document.getElementById('message');
         const submitBtn = form.querySelector('.submit-btn');
         
         form.addEventListener('submit', async (e) => {
@@ -227,7 +225,6 @@
             });
             
             const guests = guestsInput ? guestsInput.value : '1';
-            const message = messageInput ? messageInput.value.trim() : '';
             
             // Валидация
             if (!name) {
@@ -251,7 +248,7 @@
             const loadingModal = showLoadingModal();
             
             try {
-                const formData = { name, attendance, guests, message };
+                const formData = { name, attendance, guests };
                 const result = await sendToGoogleSheets(formData);
                 
                 loadingModal.remove();
@@ -270,7 +267,6 @@
                     // Очищаем форму
                     if (nameInput) nameInput.value = '';
                     attendanceRadios.forEach(radio => radio.checked = false);
-                    if (messageInput) messageInput.value = '';
                     
                     // Сбрасываем выбор количества гостей на 1
                     if (guestsInput) guestsInput.value = '1';
