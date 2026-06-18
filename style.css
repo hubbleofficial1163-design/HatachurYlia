@@ -34,7 +34,7 @@ body {
 /* Hero секция */
 .hero {
     height: 100vh;
-    background: url('1.jpg') no-repeat center center/cover;
+    background: url('11.jpg') no-repeat center center/cover;
     position: relative;
     display: flex;
     align-items: center;
@@ -1156,12 +1156,13 @@ a {
 
 .dress-code h3 {
     font-family: 'Cormorant Garamond', 'Georgia', serif;
-    font-size: 1.4rem;
-    font-weight: 600;
+    font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 2px;
+    text-align: center;
+    font-size: 1.8rem;
+    color: #2e2018;
     margin-bottom: 10px;
-    color:#2e2018;
 }
 
 .dress-code p {
